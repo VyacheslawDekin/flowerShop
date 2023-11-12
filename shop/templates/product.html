@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+
+{% endblock%}
+
+{% block content %}
+	<div class="container py-5">
+		<div class="row mt-5">
+			<div class="col-10 mx-auto col-md-6 my-3">
+				<img src="{{product.image.url}}">
+			</div>
+		</div>
+	</div>
+	<div class="col-10 mx-auto col-md-6 my-3">
+		<div>
+			<h1 class="product_title">{{product.name}}</h1>
+			<h5 class="text-info font-italic mb-4"> {{product.price}}</h5>
+			<p class="product_desc">Product Description</p>
+			<p class="text-justify product_text">{{product.description}}</p>
+			{% if product.count <= 0 %}
+				<p class="text-justify product_text">Нет в наличии</p>
+			{% else %}
+				<div>
+					<a href="{% url 'add_cart' product.id %}">В корзину <i class="bi bi-cart4"></i></a>
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+{% endblock %}
